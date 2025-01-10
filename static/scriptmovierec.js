@@ -1,15 +1,4 @@
 // Sample movie data
-const movies = [
-    { title: "Inception", rating:4.5 },
-    { title: "Interstellar", rating:4.5 },
-    { title: "The Matrix", rating:4.5 },
-    { title: "Avatar", rating:4.5},
-    { title: "Titanic", rating:4.5},
-    { title: "Gladiator", rating:4.5},
-    { title: "Joker", rating:4.5 },
-    { title: "The Lion King", rating:4.5}
-  ];
-
 const user = [
   {id: '1'},
   {id: '2'},
@@ -22,6 +11,22 @@ const user = [
   const searchInput = document.getElementById('searchBar');
   const submitBtn = document.getElementById('submitBtn');
   const selectedMovies = new Set(); // Store selected movie IDs
+
+    let movies = []; // Initialize an empty movies array
+      // Fetch movie data from the server
+      async function fetchMovies() {
+        try {
+          const response = await fetch('/movielist');
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          movies = data; // Set the fetched data to the movies array
+          displayMovies(movies); // Display the movies after fetching them
+        } catch (error) {
+          console.error('Error fetching movie list:', error);
+        }
+      }
   
   // Show Pop-up with movie selection
   startBtn.addEventListener('click', () => {
@@ -138,5 +143,5 @@ function userExists(userId) {
     document.addEventListener('DOMContentLoaded', () => searchMovie());
   
   // Load placeholder recommendations initially
-  window.onload = () => displayMovies(movies);
+  window.onload = () => fetchMovies();
   
