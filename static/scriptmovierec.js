@@ -1,15 +1,4 @@
 // Sample movie data
-const movies = [
-    { id: 1, title: "Inception", rating:4.5 },
-    { id: 2, title: "Interstellar", rating:4.5 },
-    { id: 3, title: "The Matrix", rating:4.5 },
-    { id: 4, title: "Avatar", rating:4.5},
-    { id: 5, title: "Titanic", rating:4.5},
-    { id: 6, title: "Gladiator", rating:4.5},
-    { id: 7, title: "Joker", rating:4.5 },
-    { id: 8, title: "The Lion King", rating:4.5}
-  ];
-  
   const movieContainer = document.getElementById('movie-container');
   const popup = document.getElementById('popup');
   const popupMovies = document.getElementById('popup-movies');
@@ -18,7 +7,24 @@ const movies = [
   const submitBtn = document.getElementById('submitBtn');
   const rateBtn = document.getElementById('enterBtn');
   const selectedMovies = new Set(); // Store selected movie IDs
-  
+
+  let movies = []; // Initialize an empty movies array
+
+  // Fetch movie data from the server
+  async function fetchMovies() {
+    try {
+      const response = await fetch('/movielist');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      movies = data; // Set the fetched data to the movies array
+      displayMovies(movies); // Display the movies after fetching them
+    } catch (error) {
+      console.error('Error fetching movie list:', error);
+    }
+  }
+
   // Show Pop-up with movie selection
   startBtn.addEventListener('click', () => {
     const userId = document.getElementById('userId').value;
@@ -123,5 +129,5 @@ const movies = [
     document.addEventListener('DOMContentLoaded', () => searchMovie());
   
   // Load placeholder recommendations initially
-  window.onload = () => displayMovies(movies);
+  window.onload = () => fetchMovies();
   
