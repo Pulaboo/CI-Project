@@ -114,8 +114,21 @@ function userExists(userId) {
     }
     popup.style.display = 'none'; // Hide pop-up
 
-    // Fetch Recommendations based on selections (API placeholder)
-    fetchRecommendations(Array.from(selectedMovies));
+    // Send selected movie to the server.
+    async function sendData() {
+      // Associate the FormData object with the form element
+      const formData = new FormData(form);
+    
+      try {
+        const response = await fetch("/selectedmovies", {
+          method: "POST",
+          // Set the FormData instance as the request body
+          body: JSON.stringify(selectedMovies)
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    }
   });
   
   // Display Recommendations
