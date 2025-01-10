@@ -134,18 +134,16 @@ function toggleSelection(movieId, card) {
   if (selectedMovies.has(movieId)) {
     selectedMovies.delete(movieId);
     card.classList.remove('selected');
-  } else if (selectedMovies.size < 3) {
+  } else {
     selectedMovies.add(movieId);
     card.classList.add('selected');
-  } else {
-    alert('You can only select 3 movies!');
   }
 }
 
 // Submit selected movies
 submitBtn.addEventListener('click', () => {
   if (selectedMovies.size < 3) {
-    alert('Please select exactly 3 movies.');
+    alert('Please select at least 3 movies.');
     return;
   }
   popup.style.display = 'none'; // Hide pop-up
