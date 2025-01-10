@@ -34,7 +34,7 @@ const user = [
   //Check if user exists
   if (userExists(userId)) {
     //fetch and display existing user's recommendation
-  window.location.href="Recommended section.html"
+  window.location.href="{{url_for('template', filename='Recommended section.html')}}"
   } else {
     //Prompt user to choose favourite movie
     popup.style.display = 'flex';
