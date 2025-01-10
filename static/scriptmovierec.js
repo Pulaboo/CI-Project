@@ -1,4 +1,3 @@
-// Sample movie data
   const movieContainer = document.getElementById('movie-container');
   const popup = document.getElementById('popup');
   const popupMovies = document.getElementById('popup-movies');
