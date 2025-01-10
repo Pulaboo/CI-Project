@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +10,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='movierec.css')}}" />
 
 </head>
+
 <body>
   <!-- Title -->
   <h1>Recommendation</h1>
@@ -20,17 +22,16 @@
   </div>
 
   <!--Search Bar-->
-  <div style ="text-align: center; margin-bottom: 20px;">
-    <input type="text" id="searchbar" placeholder="Search Movies" onkeyup="searchMovie()"/>
-   </div> 
-
-<!-- Recommendations Section -->
-<div id="recommendations" class="container" style="display: none; margin-top: 20px;">
-    <h2>Recommended Movies</h2>
-    <div id="recommendations-container"></div>
+  <div style="text-align: center; margin-bottom: 20px;">
+    <input type="text" id="searchbar" placeholder="Search Movies" onkeyup="searchMovie()" />
   </div>
-  
+
+  <!-- Recommendations Section -->
+  <div id="movie-container" class="container">
+  </div>
+
   <!-- Link External JavaScript -->
-  <script src="{{ url_for('static', filename='scriptmovierec.js')}}"></script>
+  <script src="{{ url_for('static', filename='scriptmovieresult.js')}}"></script>
 </body>
+
 </html>
