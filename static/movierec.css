@@ -78,6 +78,8 @@ button:hover {
   padding: 20px;
   border-radius: 10px;
   width: 80%;
+  max-height: 50%;
+  overflow-y: auto;
   max-width: 600px;
   text-align: center;
 }
