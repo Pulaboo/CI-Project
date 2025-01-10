@@ -5,7 +5,6 @@
   const startBtn = document.getElementById('startBtn');
   const searchInput = document.getElementById('searchBar');
   const submitBtn = document.getElementById('submitBtn');
-  const rateBtn = document.getElementById('enterBtn');
   const selectedMovies = new Set(); // Store selected movie IDs
 
   let movies = []; // Initialize an empty movies array
@@ -52,7 +51,6 @@
       card.innerHTML = `
         <h3>${movie.title}</h3>
         <p>Rating: ${movie.rating}</p>
-        <input style=" width:50px; align:left" type="number" class="rating-input" placeholder="Enter Rating" min="1" max="5" data-id="${movie.id}" /> <button id= "rateBtn">Rate</button>
       `;
       movieContainer.appendChild(card);
     });
@@ -119,7 +117,6 @@
       card.innerHTML = `
         <h3>${movie.title}</h3>
         <h3>Rating: ${movie.rating}</h3>
-        <input style=" width:50px; align:left" type="number" class="rating-input" placeholder="Enter Rating" min="1" max="5" data-id="${movie.id}" /> <button id= "rateBtn">Rate</button>
       `;
       movieContainer.appendChild(card);
     });
