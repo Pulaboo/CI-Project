@@ -15,7 +15,6 @@ const movies = [
   const popupMovies = document.getElementById('popup-movies');
   const startBtn = document.getElementById('startBtn');
   const searchInput = document.getElementById('searchBar');
-  const searchBtn = document.getElementById('searchBtn');
   const submitBtn = document.getElementById('submitBtn');
   const rateBtn = document.getElementById('enterBtn');
   const selectedMovies = new Set(); // Store selected movie IDs
@@ -31,8 +30,32 @@ const movies = [
     loadPopupMovies();
   });
 
-  //Search button
+  // Search functionality
+  function searchMovie() {
+    const input = document.getElementById('searchbar').value.toLowerCase();
+    const movieContainer = document.getElementById('movie-container');
+    movieContainer.innerHTML = '';
 
+    const filteredMovies = movies.filter(movie => 
+      movie.title.toLowerCase().includes(input)
+    );
+
+    filteredMovies.forEach(movie => {
+      const card = document.createElement('div');
+      card.classList.add('movie-card');
+      card.innerHTML = `
+        <h3>${movie.title}</h3>
+        <p>Rating: ${movie.rating}</p>
+        <input style=" width:50px; align:left" type="number" class="rating-input" placeholder="Enter Rating" min="1" max="5" data-id="${movie.id}" /> <button id= "rateBtn">Rate</button>
+      `;
+      movieContainer.appendChild(card);
+    });
+  }
+  
+  // Initially display all movies
+  document.addEventListener('DOMContentLoaded', () => {
+    searchMovie(); // Call searchMovie without any input to load all movies
+  });
   
   // Load Movies into Pop-up
   function loadPopupMovies() {
@@ -89,12 +112,15 @@ const movies = [
       card.classList.add('movie-card');
       card.innerHTML = `
         <h3>${movie.title}</h3>
-        <h3>${movie.rating}</h3>
+        <h3>Rating: ${movie.rating}</h3>
         <input style=" width:50px; align:left" type="number" class="rating-input" placeholder="Enter Rating" min="1" max="5" data-id="${movie.id}" /> <button id= "rateBtn">Rate</button>
       `;
       movieContainer.appendChild(card);
     });
   }
+
+    // Load all movies on page load
+    document.addEventListener('DOMContentLoaded', () => searchMovie());
   
   // Load placeholder recommendations initially
   window.onload = () => displayMovies(movies);
